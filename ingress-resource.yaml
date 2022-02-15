@@ -1,0 +1,46 @@
+apiVersion: v1
+items:
+- apiVersion: networking.k8s.io/v1
+  kind: Ingress
+  metadata:
+    annotations:
+      ingress.kubernetes.io/backends: '{"k8s-be-31675--db43b6550a85dc52":"HEALTHY","k8s1-db43b655-default-el-github-pr-8080-5d79cddb":"HEALTHY"}'
+      ingress.kubernetes.io/forwarding-rule: k8s2-fr-syyu2voo-default-ingress-resource-izouzf2g
+      ingress.kubernetes.io/target-proxy: k8s2-tp-syyu2voo-default-ingress-resource-izouzf2g
+      ingress.kubernetes.io/url-map: k8s2-um-syyu2voo-default-ingress-resource-izouzf2g
+      kubernetes.io/ingress.class: gce
+      nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    creationTimestamp: "2022-02-08T07:36:31Z"
+    finalizers:
+    - networking.gke.io/ingress-finalizer-V2
+    generation: 1
+    name: ingress-resource
+    namespace: default
+    resourceVersion: "7687180"
+    uid: 77a7f300-3c31-4fa8-90bf-5525438595f6
+  spec:
+    rules:
+    - http:
+        paths:
+        - backend:
+            service:
+              name: el-github-pr
+              port:
+                number: 8080
+          path: /hooks
+          pathType: Exact
+#        - backend:
+#            service:
+#              name: el-github-pr-new
+#              port:
+#                number: 8080
+#          path: /test
+#          pathType: Exact
+  status:
+    loadBalancer:
+      ingress:
+      - ip: 34.149.42.211
+kind: List
+metadata:
+  resourceVersion: ""
+  selfLink: ""

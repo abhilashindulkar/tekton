@@ -1,0 +1,10 @@
+kind: TaskRun
+apiVersion: tekton.dev/v1beta1
+metadata:
+  name: run-gitclone
+  description: Run git clone and read title
+spec:
+  serviceAccountName: tek-wli
+  taskRef:
+    name: git-clone
+

@@ -1,0 +1,41 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"tekton.dev/v1beta1","kind":"Task","metadata":{"annotations":{"tekton.dev/categories":"CLI","tekton.dev/pipelines.minVersion":"0.12.1","tekton.dev/platforms":"linux/amd64","tekton.dev/tags":"gcp"},"labels":{"app.kubernetes.io/version":"0.1"},"name":"gcloud","namespace":"default"},"spec":{"description":"This task performs operations on Google Cloud Platform resources using gcloud.","params":[{"default":"gcr.io/google.com/cloudsdktool/cloud-sdk:slim@sha256:70d3c9ef711c704259b06485f9ab3bab6e1b5c99e4a5c1ed37f9338004664c17","description":"gcloud CLI container image to run this task","name":"gcloud-image"},{"default":["help"],"description":"gcloud CLI arguments to run","name":"ARGS","type":"array"}],"steps":[{"args":["$(params.ARGS)"],"command":["/usr/bin/gcloud"],"image":"$(params.gcloud-image)","name":"gcloud"}]}}
+    tekton.dev/categories: CLI
+    tekton.dev/pipelines.minVersion: 0.12.1
+    tekton.dev/platforms: linux/amd64
+    tekton.dev/tags: gcp
+  creationTimestamp: "2022-02-09T14:46:52Z"
+  generation: 2
+  labels:
+    app.kubernetes.io/version: "0.1"
+  name: gcloud
+  namespace: default
+  resourceVersion: "7696191"
+  uid: 9c214c10-4c8b-496c-8468-5e2c9ef7caa9
+spec:
+  description: This task performs operations on Google Cloud Platform resources using
+    gcloud.
+  params:
+  - default: gcr.io/google.com/cloudsdktool/cloud-sdk:slim@sha256:70d3c9ef711c704259b06485f9ab3bab6e1b5c99e4a5c1ed37f9338004664c17
+    description: gcloud CLI container image to run this task
+    name: gcloud-image
+    type: string
+  - default:
+    - help
+    description: gcloud CLI arguments to run
+    name: ARGS
+    type: array
+  steps:
+  - args:
+    - $(params.ARGS)
+    command:
+    - /usr/bin/gcloud
+    image: $(params.gcloud-image)
+    name: gcloud
+    resources: {}
+  workspaces:
+  - name: depsource

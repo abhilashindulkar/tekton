@@ -1,0 +1,15 @@
+kind: Task
+apiVersion: tekton.dev/v1beta1
+metadata:
+  name: git-clone
+  description: This task will clone a git repository and print the title from the README
+spec:
+  workspaces:
+  - name: source
+  steps:
+  - name: clone
+    image: alpine/git
+    script: |
+      git clone https://github.com/abhilashindulkar/linux-tweet-priv.git
+      cd linux-tweet-priv
+      cat README.md | grep "\#" -m 1 

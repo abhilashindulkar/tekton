@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  annotations:
+    iam.gke.io/gcp-service-account: test-sa-tekton@vernal-segment-339505.iam.gserviceaccount.com
+  creationTimestamp: "2022-02-09T14:23:28Z"
+  name: tek-wli
+  namespace: default
+  resourceVersion: "4756052"
+  uid: bd092be0-f41e-4672-a054-eeee7ced59f6
+secrets:
+- name: tek-wli-token-ntfwx
+- name: basic-user-pass

@@ -1,0 +1,18 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  generateName: test-pipelinerun
+spec:
+  serviceAccountName: tek-wli
+  pipelineRef:
+    name: test-pipeline
+  workspaces:
+    - name: my-source
+      volumeClaimTemplate:
+        spec:
+          accessModes:
+            - ReadWriteOnce
+          resources:
+            requests:
+              storage: 5Gi
+

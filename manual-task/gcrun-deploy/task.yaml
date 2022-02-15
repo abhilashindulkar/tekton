@@ -1,0 +1,19 @@
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  generateName: run-deploy
+spec:
+  serviceAccountName: tek-wli 
+  taskRef:
+    name: gcloud
+  params:
+  - name: ARGS
+    value:
+    - run
+    - deploy
+    - my-service
+    - --image=us.gcr.io/vernal-segment-339505/linux-tw:v1
+    - --platform=managed
+    - --region=us-central1
+    - --port=80
+    - --allow-unauthenticated

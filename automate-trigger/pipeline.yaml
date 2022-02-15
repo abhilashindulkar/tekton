@@ -1,0 +1,51 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: test-pipeline
+spec:
+  workspaces:
+    - name: my-source
+  tasks:
+    - name: fetch-repository
+      taskRef:
+        name: git-clone
+      params:
+        - name: url
+          value: https://github.com/abhilashindulkar/linux-tweet-priv.git
+        - name: deleteExisting
+          value: "true"
+      workspaces:
+        - name: output
+          workspace: my-source
+    - name: build-push
+      taskRef:
+        name: kaniko
+      runAfter:
+        - fetch-repository
+      params:
+      - name: IMAGE
+        value: gcr.io/vernal-segment-339505/linux-tweet-priv
+      - name: DOCKERFILE
+        value: ./Dockerfile
+      workspaces:
+        - name: source
+          workspace: my-source
+    - name: deploy
+      taskRef:
+        name: gcloud
+      runAfter:
+        - build-push
+      params:
+        - name: ARGS
+          value:
+          - run
+          - deploy
+          - my-service
+          - --image=gcr.io/vernal-segment-339505/linux-tweet-priv
+          - --platform=managed
+          - --region=us-central1
+          - --port=80
+          - --allow-unauthenticated
+      workspaces:
+        - name: depsource
+          workspace: my-source

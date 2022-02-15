@@ -1,0 +1,10 @@
+apiVersion: triggers.tekton.dev/v1alpha1
+kind: TriggerBinding
+metadata:
+  name: github-pr-binding
+spec:
+  params:
+    - name: gitrepositoryurl
+      value: https://github.com/abhilashindulkar/linux-tweet-priv.git
+      #- name: gitrevision
+      #value: $(body.pull_request.head.sha)
