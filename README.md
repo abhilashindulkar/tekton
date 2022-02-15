@@ -25,6 +25,9 @@ kubectl apply -f https://storage.googleapis.com/tekton-releases/triggers/previou
 ### Configure RBAC for our Tekton Triggers service account:
 kubectl apply -f tekton-rbac.yaml
 
+### Install Tekton Dashboard on Kubernetes Cluster
+kubectl apply --filename https://storage.googleapis.com/tekton-releases/dashboard/latest/tekton-dashboard-release.yaml
+
 ## Creating Resources for Tekton Triggers
 For the project we need to create the following resources:
 
@@ -66,3 +69,10 @@ git commit -m "Modified test file"
 git push
 
 PR raised on master from dev and is merged. PipelineRun should get triggered.
+
+## References:
+https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity
+
+https://cloud.google.com/container-registry/docs/advanced-authentication
+
+https://github.com/GoogleContainerTools/kaniko#pushing-to-gcr-using-workload-identity
