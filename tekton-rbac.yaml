@@ -1,0 +1,53 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"rbac.authorization.k8s.io/v1","kind":"Role","metadata":{"annotations":{},"name":"tekton-triggers-example-minimal","namespace":"default"},"rules":[{"apiGroups":["triggers.tekton.dev"],"resources":["eventlisteners","triggerbindings","triggertemplates","triggers"],"verbs":["get","list","watch"]},{"apiGroups":[""],"resources":["configmaps"],"verbs":["get","list","watch"]},{"apiGroups":["tekton.dev"],"resources":["pipelineruns","pipelineresources","taskruns"],"verbs":["create"]},{"apiGroups":[""],"resources":["serviceaccounts"],"verbs":["impersonate"]},{"apiGroups":["policy"],"resourceNames":["tekton-triggers"],"resources":["podsecuritypolicies"],"verbs":["use"]}]}
+  creationTimestamp: "2022-02-03T06:28:46Z"
+  name: tekton-triggers-example-minimal
+  namespace: default
+  resourceVersion: "934752"
+  uid: b79ac9dc-d163-410b-baa8-b8ca89693ec6
+rules:
+- apiGroups:
+  - triggers.tekton.dev
+  resources:
+  - eventlisteners
+  - triggerbindings
+  - triggertemplates
+  - triggers
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - ""
+  resources:
+  - configmaps
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - tekton.dev
+  resources:
+  - pipelineruns
+  - pipelineresources
+  - taskruns
+  verbs:
+  - create
+- apiGroups:
+  - ""
+  resources:
+  - serviceaccounts
+  verbs:
+  - impersonate
+- apiGroups:
+  - policy
+  resourceNames:
+  - tekton-triggers
+  resources:
+  - podsecuritypolicies
+  verbs:
+  - use
