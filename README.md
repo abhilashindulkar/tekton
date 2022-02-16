@@ -12,21 +12,21 @@ Tekton Triggers requires Tekton Pipelines to be installed. We also need to insta
 By default all resources will be installed in the tekton-pipelines namespace.
 
 ### Tekton Namespace
-kubectl create -f tekton-pipelines
+`kubectl create -f tekton-pipelines`
 
 ### Tekton Pipelines
-kubectl apply -f https://storage.googleapis.com/tekton-releases/pipeline/previous/v0.23.0/release.yaml
+`kubectl apply -f https://storage.googleapis.com/tekton-releases/pipeline/previous/v0.23.0/release.yaml`
 
 ### Tekton Triggers + Interceptors
-kubectl apply -f https://storage.googleapis.com/tekton-releases/triggers/previous/v0.13.0/release.yaml
+`kubectl apply -f https://storage.googleapis.com/tekton-releases/triggers/previous/v0.13.0/release.yaml`
 
-kubectl apply -f https://storage.googleapis.com/tekton-releases/triggers/previous/v0.13.0/interceptors.yaml
+`kubectl apply -f https://storage.googleapis.com/tekton-releases/triggers/previous/v0.13.0/interceptors.yaml`
 
 ### Configure RBAC for our Tekton Triggers service account:
-kubectl apply -f tekton-rbac.yaml
+`kubectl apply -f tekton-rbac.yaml`
 
 ### Install Tekton Dashboard on Kubernetes Cluster
-kubectl apply --filename https://storage.googleapis.com/tekton-releases/dashboard/latest/tekton-dashboard-release.yaml
+`kubectl apply --filename https://storage.googleapis.com/tekton-releases/dashboard/latest/tekton-dashboard-release.yaml`
 
 ## Creating Resources for Tekton Triggers
 For the project we need to create the following resources:
@@ -57,6 +57,8 @@ Secret: #######
 Under events select Let me select individual events. Uncheck Pushes and check Pull requests.
 
 ## Merging the raised PR and testing our trigger
+
+Referencing https://github.com/abhilashindulkar/linux-tweet-priv.git
 
 cd linux-tweet-priv/
 
